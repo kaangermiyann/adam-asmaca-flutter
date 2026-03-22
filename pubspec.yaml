@@ -25,6 +25,9 @@ dependencies:
   # Utils
   uuid: ^4.2.2
 
+  # WebSocket
+  web_socket_channel: ^3.0.1
+
   cupertino_icons: ^1.0.6
 
 dev_dependencies:

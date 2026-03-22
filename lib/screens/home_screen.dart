@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/local_game_provider.dart';
 import '../utils/app_theme.dart';
 import 'local_game_screen.dart';
+import 'network_game_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -163,17 +164,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       width: double.infinity,
       height: 80,
-      child: OutlinedButton(
+      child: ElevatedButton(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Online mod yakında eklenecek!'),
-              duration: Duration(seconds: 2),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const NetworkGameScreen(),
             ),
           );
         },
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: AppTheme.cardColor, width: 2),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppTheme.secondaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -184,10 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: AppTheme.cardColor,
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(Icons.wifi, size: 28, color: AppTheme.textMuted),
+              child: const Icon(Icons.wifi, size: 28),
             ),
             const SizedBox(width: 16),
             const Column(
@@ -195,38 +196,23 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Online Oyun',
+                  'Lokal Ag Oyunu',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textSecondary,
                   ),
                 ),
                 Text(
-                  'Yakında...',
+                  'Farkli cihazlarda oyna',
                   style: TextStyle(
                     fontSize: 13,
-                    color: AppTheme.textMuted,
+                    color: Colors.white70,
                   ),
                 ),
               ],
             ),
             const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppTheme.warningColor.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Text(
-                'YAKINDA',
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.warningColor,
-                ),
-              ),
-            ),
+            const Icon(Icons.arrow_forward_ios, size: 20),
           ],
         ),
       ),
